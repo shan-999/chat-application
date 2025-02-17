@@ -189,7 +189,7 @@ a {
 	}
 }
 
-.chat-messages button{
+/* .chat-messages button{
 	position: absolute;
     right: 40px;
     width: 50px;
@@ -197,3 +197,74 @@ a {
     border: none;
     background: #e6e9ff;
 }
+
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    flex: 1;
+} */
+
+.msg-head{
+	display: flex;
+    align-items: center; 
+    gap: 10px;
+}
+
+.message {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    max-width: 100%;
+    flex-wrap: wrap; 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.chat-messages .btn {
+    flex-shrink: 0; 
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.chat-messages .btn i {
+    font-size: 20px;
+    color: #667aff;
+}
+
+.text {
+	margin-top: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    flex: 1; 
+    max-width: calc(100% - 50px);
+}
+
+

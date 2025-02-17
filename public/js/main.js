@@ -41,8 +41,10 @@ function outputMessage(message) {
     
     div.classList.add('message')
         div.innerHTML =`
+        <div class="msg-head">
         <button class="btn"><i class="fa-solid fa-microphone" style="color: #667aff;"></i></i></button>
         <p class="meta">${message.username} <span>${message.time}</span></p>
+        </div>
         <p class="text">
             ${message.text}
         </p>`
@@ -50,20 +52,35 @@ function outputMessage(message) {
     document.querySelector('.chat-messages').appendChild(div)
 }
 
-document.querySelector('.chat-messages').addEventListener('click', (event) => {
-    
+let isSpeaking = false;
+let currentUtterance = null; 
+
+document.querySelector('.chat-messages').addEventListener('click', (event) => { 
     if (event.target.closest('.btn')) {
         const messageDiv = event.target.closest('.message');
         const messageText = messageDiv.querySelector('.text').innerText;
-        speakMessage(messageText); 
+        
+        toggleSpeech(messageText);
     }
 });
 
-function speakMessage(messageText) {
-    const speech = new SpeechSynthesisUtterance(messageText);
-    speech.lang = 'en-US'; 
-    window.speechSynthesis.speak(speech);
+function toggleSpeech(messageText) {
+    if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+    } else {
+        currentUtterance = new SpeechSynthesisUtterance(messageText);
+        currentUtterance.lang = 'en-US';
+
+        currentUtterance.onend = () => {
+            isSpeaking = false;
+        };
+
+        window.speechSynthesis.speak(currentUtterance);
+        isSpeaking = true;
+    }
 }
+
 
 
 function outputRoomName(room) {
