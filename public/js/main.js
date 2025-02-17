@@ -38,6 +38,7 @@ chatForm.addEventListener('submit',(e) => {
 
 function outputMessage(message) {
     const div = document.createElement('div')
+    // const localTime = new Date(message.time + "Z").toLocaleString(); 
     div.classList.add('message')
     div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
             <p class="text">
