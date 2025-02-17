@@ -38,14 +38,32 @@ chatForm.addEventListener('submit',(e) => {
 
 function outputMessage(message) {
     const div = document.createElement('div')
-    // const localTime = new Date(message.time + "Z").toLocaleString(); 
+    console.log('kk');
+    
     div.classList.add('message')
-    div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
-            <p class="text">
-               ${message.text}
-            </p>`
+        div.innerHTML =`
+        <button class="btn"><i class="fa-solid fa-microphone" style="color: #667aff;"></i></i></button>
+        <p class="meta">${message.username} <span>${message.time}</span></p>
+        <p class="text">
+            ${message.text}
+        </p>`
 
     document.querySelector('.chat-messages').appendChild(div)
+}
+
+document.querySelector('.chat-messages').addEventListener('click', (event) => {
+    
+    if (event.target) {
+        const messageDiv = event.target.closest('.message');
+        const messageText = messageDiv.querySelector('.text').innerText;
+        speakMessage(messageText); 
+    }
+});
+
+function speakMessage(messageText) {
+    const speech = new SpeechSynthesisUtterance(messageText);
+    speech.lang = 'en-US'; 
+    window.speechSynthesis.speak(speech);
 }
 
 
@@ -58,3 +76,4 @@ function outputUsers(users) {
     ${users.map(user => `<li>${user.username}</li>`).join('')}
     `
 }
+
