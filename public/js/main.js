@@ -38,7 +38,6 @@ chatForm.addEventListener('submit',(e) => {
 
 function outputMessage(message) {
     const div = document.createElement('div')
-    console.log('kk');
     
     div.classList.add('message')
         div.innerHTML =`
@@ -53,7 +52,7 @@ function outputMessage(message) {
 
 document.querySelector('.chat-messages').addEventListener('click', (event) => {
     
-    if (event.target) {
+    if (event.target.closest('.btn')) {
         const messageDiv = event.target.closest('.message');
         const messageText = messageDiv.querySelector('.text').innerText;
         speakMessage(messageText); 
